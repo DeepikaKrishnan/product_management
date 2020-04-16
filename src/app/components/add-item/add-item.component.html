@@ -1,0 +1,42 @@
+<div class="add-wrapper">
+    <div class="add-head" appHighlight defaultColor="#bad3ef">{{mode | titlecase }} Item</div>
+    <div class="main-form">
+        <form [formGroup]="addForm" (ngSubmit)="addItem()">
+            <div class="row">
+                <div class="form-group col-md-4">
+                <label>Item Name</label>
+                <input type="text" formControlName="itemName" class="form-control" [readonly]="mode==='edit'">
+                <div class="alert alert-danger" *ngIf="addForm.controls.itemName.dirty && addForm.controls.itemName.errors">
+                    <span class="text-danger" *ngIf="addForm.controls.itemName.errors.required"> Item Name is required</span>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Price</label>
+                <input type="number" formControlName="price" class="form-control">
+                <div class="alert alert-danger" *ngIf="addForm.controls.price.dirty && addForm.controls.price.errors">
+                    <span class="text-danger" *ngIf="addForm.controls.price.errors.required"> Price is required</span>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Tax</label>
+                <select formControlName="tax" class="form-control">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+                <div class="alert alert-danger" *ngIf="addForm.controls.tax.dirty && addForm.controls.tax.errors">
+                    <span class="text-danger" *ngIf="addForm.controls.tax.errors.required"> Tax is required                    
+                    </span>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                    <label>Image</label>
+                    <input type="file" formControlName="filename" class="form-control" (change)="uploadfile($event)">
+                </div>
+            <div class="form-group footer">
+                <button class="btn btn-primary" [class.disabled]="addForm.invalid">{{mode | uppercase}}</button>
+                <span class="float-right cursor-pointer" [routerLink]="['/list']">Goto list</span>
+            </div>
+            </div>
+        </form>
+    </div>
+</div>

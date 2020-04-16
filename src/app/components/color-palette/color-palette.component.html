@@ -1,0 +1,8 @@
+<div class="main">
+</div>
+<div class="palette" *ngFor="let i of brightArray">
+    <div *ngFor="let j of numArray" [ngStyle]="{'filter': getDegree(j)}" (click)="previeColor = j">
+    </div>
+</div>
+<div>Preview</div>
+<div class="previe" [ngStyle]="{'filter': getDegree(previeColor)}"></div>

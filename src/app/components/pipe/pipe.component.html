@@ -1,0 +1,39 @@
+<div class="main">
+        <div> Date Format
+                <div>Today date <b>{{today | date}}</b></div>
+                <div>Today date <b>{{today | date:'fullDate'}}</b></div>
+                <div>Today date <b>{{today | date:'fullTime'}}</b></div>
+                <div>Today date <b> {{today | date:'hh:mm:ss'}}</b></div>
+            </div>
+            <br>
+            <div> Money Format
+                <div>Amount <b>{{amount | currency}}</b></div>
+                <div>Amount <b>{{amount | currency:'INR':'symbol':'3.3-4'}}</b></div>
+                <div>Amount <b>{{amount | currency:'INR':'code'}}</b></div>
+                <div>Amount <b>{{amount | currency:'INR':'symbol-narrow':'2.3-4'}}</b></div>
+            </div>
+            <br>
+            <div>Odd Even Letter
+                <div><input type="string" [(ngModel)]="stringtransform"></div>
+                <div><b>{{stringtransform | oddeven}}</b></div>
+            </div>
+            <div>Factorial
+                <div><input type="number" [(ngModel)]="fact"></div>
+                <div><b>{{fact | factorial}}</b></div>
+            </div>
+            <br>
+            <div>Random from 0-100
+                <div><input type="number" [(ngModel)]="rand"></div>
+                <div><b>{{rand | random}}</b></div>
+            </div>
+            <br>
+            <div>Square Pipe
+                <div><input type="number" [(ngModel)]="sqvalue"></div>
+                <div><b>{{sqvalue | squarecubic : '2'}}</b></div>
+            </div>
+            <br>
+            <div>Cubic Pipe
+                <div><input type="number" [(ngModel)]="cuvalue"></div>
+                <div><b>{{cuvalue | squarecubic : '3'}}</b></div>
+            </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="item-wrapper">
+    <div class="item-head">
+        <div class="head-title">Item List</div>
+        <div class="logout" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i></div>
+    </div>
+    <div class="add" [routerLink]="['/add']" (click)="gotoAdd()">Add Item</div>
+    <div class="item-sub">
+        <table class="table table-bordered table-striped" *ngIf="itemData && itemData.length; else emptydata">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Price</th>
+                    <th>Tax</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr *ngFor = "let item of itemData">
+                    <td>{{item.payload.doc.data().item_name}}</td>
+                    <td class="price">{{item.payload.doc.data().price}}</td>
+                    <td>{{item.payload.doc.data().tax}}</td>
+                    <td class="action">
+                        <div class="edit cursor-pointer" (click)="onEdit(item)"> 
+                            <i class="fa fa-edit" aria-hidden="true"></i>
+                        </div> 
+                        <div class="delete cursor-pointer" (click)="removeItem(item)"> 
+                            <i class="fa fa-remove" aria-hidden="true"></i>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <ng-template #emptydata>
+            No Item List. Click Add Item to add new item.
+        </ng-template>
+    </div>
+
+</div>

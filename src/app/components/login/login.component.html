@@ -1,0 +1,30 @@
+<div class="main-div">
+    <div class="inner-div">
+      <div class="login-head">Login !!!</div>
+      <form [formGroup] = "loginForm" (ngSubmit)="login()">
+        <div class="form-group">
+          <label>User Name</label>
+          <input type="text" class="form-control" formControlName = "userName">
+          <div class="alert alert-danger" *ngIf="loginForm.controls.userName.dirty && loginForm.controls.userName.errors">
+              <span class="text-danger" *ngIf="loginForm.controls.userName.errors && loginForm.controls.userName.errors.required"> Username is required</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" formControlName = "password">
+          <div class="alert alert-danger" *ngIf="loginForm.controls.password.dirty && loginForm.controls.password.errors">
+              <span class="text-danger" *ngIf="loginForm.controls.password.errors && loginForm.controls.password.errors.required"> Password is required</span>
+              <span class="text-danger" *ngIf="loginForm.controls.password.errors && loginForm.controls.password.errors.minlength"> Password must be at least 6 character</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" [class.disabled]="loginForm.invalid">Login</button>
+        </div>
+      </form>
+       <!--div>
+        <button (click)="clicked=!clicked;range=10;count()">Click me !!</button>
+        <div *ngIf="clicked">{{range}}</div>
+      </div-->
+      <div></div>
+    </div>
+  </div>

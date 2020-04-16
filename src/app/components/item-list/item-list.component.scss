@@ -1,0 +1,60 @@
+:host {
+    width: 100%;
+    height: 100%;
+}
+
+.item-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    padding: 15px;
+    .item-head {
+        display: flex;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        padding: 5px 10px;
+        background: #bad3ef!important;
+        .head-title {
+            margin: 0 auto;
+        }
+        .logout {
+            cursor: pointer;
+        }
+    }
+    .add {
+        display: flex;
+        flex-direction: row-reverse;
+        padding: 5px;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+    .item-sub {
+        display: flex;
+        width: 80%;
+        height: 80%;
+        //align-items: center;
+        margin: 0 auto;
+        margin-top: 10%;
+        justify-content: center;
+        table {
+            thead {
+                text-align: center;
+            }
+            tbody {
+                td {
+                    &.action {
+                        display: flex;
+                        justify-content: center;
+                        .edit, .delete {
+                            padding: 5px;
+                        }
+                    }
+                    &.price {
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
+}
