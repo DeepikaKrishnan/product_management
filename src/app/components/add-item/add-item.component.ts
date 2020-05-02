@@ -17,7 +17,7 @@ export class AddItemComponent implements OnInit {
     itemName: ['', Validators.required],
     price: ['',  Validators.required],
     tax:['',  Validators.required],
-    filename:[]
+    //filename:[]
   });
 
   loginData = this.addForm.controls;
@@ -28,10 +28,12 @@ export class AddItemComponent implements OnInit {
   percentage: Observable<number>;
   snapshot: Observable<any>;
   downloadURL: string;
+  userId: any;
 
   constructor(private fb: FormBuilder, private app: AppService, private fire: FirebaseService, private storage: AngularFireStorage, private db: AngularFirestore) { 
     /*const data = JSON.parse(localStorage.getItem('itemList'));
     this.itemArr = data || [];*/
+    this.userId = localStorage.getItem('userId');
     if(this.app.mode === 'edit' && this.app.editObj) {
       const data = this.app.editObj;
       this.mode = this.app.mode;
@@ -50,6 +52,7 @@ export class AddItemComponent implements OnInit {
     this.submitted = true;
     const item = {
       //id,
+      userId: this.userId,
       name : this.loginData.itemName.value,
       price : this.loginData.price.value,
       tax : this.loginData.tax.value
@@ -61,8 +64,7 @@ export class AddItemComponent implements OnInit {
       if (maxId) {
         id = maxId+1;
       }*/
-      this.fire.getItem().subscribe((x) => {
-        console.log(x);
+      this.fire.getItem(this.userId).subscribe((x) => {
         this.itemArr = x;
       });
       const isDup =  this.itemArr.find((x) => x.payload.doc.data().item_name === item.name);
@@ -86,7 +88,7 @@ export class AddItemComponent implements OnInit {
     }
   }
 
-  uploadfile(event) {
+ /* uploadfile(event) {
     console.log(event);
     const path = `test/${Date.now()}_${event.target.files[0].name}`;
     const ref = this.storage.ref(path);
@@ -106,6 +108,6 @@ export class AddItemComponent implements OnInit {
         this.db.collection('files').add( { downloadURL: this.downloadURL, path });
       }),
     );
-  }
+  }*/
 
 }

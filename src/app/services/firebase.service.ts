@@ -11,6 +11,7 @@ export class FirebaseService {
   addItem(item) {
       return this.db.collection("item").add(
         {
+          userId: item.userId,
           item_name: item.name,
           price: item.price,
           tax: item.tax
@@ -18,8 +19,8 @@ export class FirebaseService {
       )
   }
 
-  getItem() {
-      return this.db.collection('item').snapshotChanges();
+  getItem(userId) {
+      return this.db.collection('item', ref => ref.where('userId', '==' , userId)).snapshotChanges();
   }
 
   deleteItem(id) {

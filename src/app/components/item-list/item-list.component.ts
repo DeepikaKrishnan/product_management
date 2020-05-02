@@ -10,13 +10,15 @@ import { FirebaseService } from '../../services/firebase.service';
 })
 export class ItemListComponent implements OnInit {
   itemData = [];
+  userId: any;
   constructor(private router: Router, private app: AppService, private fire: FirebaseService) {
    // this.itemData = JSON.parse(localStorage.getItem('itemList'));
+   this.userId = localStorage.getItem('userId');
   }
 
   ngOnInit(): void {
-    this.fire.getItem().subscribe((x) => {
-      console.log(x);
+    this.fire.getItem(this.userId).subscribe((x) => {
+      //console.log(x);
       this.itemData = x;
     });
   }
@@ -24,7 +26,7 @@ export class ItemListComponent implements OnInit {
   logout() {
    // localStorage.removeItem('name');
    // localStorage.removeItem('password');
-   this.app.authenticated = false;
+    localStorage.removeItem('userId');
     this.router.navigateByUrl('/login');
   }
 

@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
    };
 
    const data =  this.user.docs.find((x) => x.data().name == user.name && x.data().password == user.password);
-
+   localStorage.setItem('userId', data.id);
    if (data) {
     this.app.authenticated = true;
     this.router.navigateByUrl('/list');

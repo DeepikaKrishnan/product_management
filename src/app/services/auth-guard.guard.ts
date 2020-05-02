@@ -7,11 +7,14 @@ import { AppService } from './app.service';
   providedIn: 'root'
 })
 export class AuthGuardGuard implements CanActivate {
-  constructor(private router: Router, private app: AppService) {}
+  userId: any;
+  constructor(private router: Router, private app: AppService) {
+    this.userId = localStorage.getItem('userId');
+  }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.app.authenticated){
+    if (this.userId){
       this.router.navigateByUrl('/list');
       return false;
     }
